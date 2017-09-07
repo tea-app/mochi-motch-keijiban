@@ -8,7 +8,7 @@ $locations = array(
     '和歌山県' => 300010,
     '奈良県' => 280010,
     '三重県' => 240010);
-    $text = $_POST['name'];
+    $text = $_POST['content'];
     $location_code;
     if( array_key_exists($text, $locations)){
         $location_code = $locations[$text];
