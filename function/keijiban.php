@@ -6,7 +6,7 @@ require_once('BotCaller.php');
 
 ini_set( 'display_errors', 1 );
 
-$env_params = EnvReader::getParams('.env');
+$env_params = EnvReader::getParams('../.env');
 
 $hostname = $env_params['HOSTNAME'];
 $database_name = $env_params['DATABASE_NAME'];
@@ -44,7 +44,7 @@ switch ($parameter['function']) {
 
 function backToShowPage()
 {
-    $url = 'show.php';
+    $url = '../show.php';
     header('Location: ' . $url, true , 301);
     exit;
 }

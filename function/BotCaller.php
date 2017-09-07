@@ -69,7 +69,7 @@ class BotCaller
     
     function backToShowPage()
     {
-        $url = 'show.php';
+        $url = '../show.php';
         header('Location: ' . $url, true , 301);
         exit;
     }
