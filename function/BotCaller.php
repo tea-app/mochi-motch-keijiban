@@ -60,7 +60,7 @@ class BotCaller
     
     public function insert($name, $content)
     {
-        $params= [
+        $params = [
             'name' => $name,
             'content' => $content
         ];
