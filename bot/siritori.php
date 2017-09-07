@@ -2,6 +2,7 @@
     require_once 'lib/Igo.php';
     $name = "しりとりbot";
     $content = "";
+    $user_name = $_POST['name'];
     //最初の文字を取得
     $key = file_get_contents('next.txt', true);//最初の文字
     // var_dump($key);
@@ -11,7 +12,7 @@
       $key = "り";//最初はしりとりの"り"から
     }
     //入力によって処理する
-    if($_POST['content'] == false) $content = "内容を入力してください。(最初の文字は'り'からです。)";
+    if($_POST['content'] == false) $content = $user_name."さん、内容を入力してください。(最初の文字は'".$key."'からです。)";
     else {
       ////漢字やカナをひらがなに変換
       $igo = new Igo(dirname(__FILE__) . "/ipadic");
@@ -27,11 +28,11 @@
       $pre = mb_convert_kana($str, "c", "utf-8");
       //var_dump(substr($pre, 0,3));
       if(strpos($key,substr($pre, 0,3)) === false){
-        $content = "ちがう頭文字";
+        $content = $user_name."さん、ちがう頭文字です。";
       }else if(strpos($used,$pre) !== false){
-        $content = "使った言葉";
+        $content = $user_name."さん、それはすでに使った言葉です。";
       }else if(strpos(substr($pre, -3),'ん') !== false){
-        $content = "'ん'なのであなたのまけ";
+        $content = "'ん'なので".$user_name."さんのまけです。";
         $filename = chmod('word.txt', 0666);
         $filename = chmod('next.txt', 0666);
         $word = fopen('word.txt', 'w');
