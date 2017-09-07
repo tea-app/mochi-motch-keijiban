@@ -32,7 +32,9 @@ class BotCaller
             if ($this->isMatchTag($key)) {
                 $client = new CurlRequest($value);
                 $result = $client->request(null , [CURLOPT_RETURNTRANSFER => true, CURLOPT_POST => true, CURLOPT_POSTFIELDS => $this->parameters]);
+                // var_dump($result);
                 $result = json_decode($result, true);
+                // var_dump($result);
                 $this->insert($result['name'], $result['content']);
                 $this->backToShowPage();
             }
