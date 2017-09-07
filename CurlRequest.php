@@ -5,18 +5,13 @@
  */
 class CurlRequest
 {
-    private $query = '';
-    private $uri;
     function __construct($uri)
     {
         $this->uri = $uri;
     }
     public function request($parameters, $opt_array)
     {
-        if ($parameters !== null) {
-            $this->query = '?' . http_build_query($parameters);
-        }
-        $ch = curl_init($this->uri . $this->query);
+        $ch = curl_init($this->uri . '?' . http_build_query($parameters));
         if ($opt_array !== null) {
             curl_setopt_array($ch, $opt_array);
         }
