@@ -11,7 +11,7 @@
       $key = "り";//最初はしりとりの"り"から
     }
     //入力によって処理する
-    if($_POST['content'] == false) $content = "内容を入力してください。(最初の文字は\"り\"からです。)";
+    if($_POST['content'] == false) $content = "内容を入力してください。(最初の文字は'り'からです。)";
     else {
       ////漢字やカナをひらがなに変換
       $igo = new Igo(dirname(__FILE__) . "/ipadic");
@@ -31,7 +31,7 @@
       }else if(strpos($used,$pre) !== false){
         $content = "使った言葉";
       }else if(strpos(substr($pre, -3),'ん') !== false){
-        $content = "\"ん\"なのであなたのまけ";
+        $content = "'ん'なのであなたのまけ";
         $filename = chmod('word.txt', 0666);
         $filename = chmod('next.txt', 0666);
         $word = fopen('word.txt', 'w');
