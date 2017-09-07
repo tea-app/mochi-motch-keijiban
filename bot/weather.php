@@ -23,8 +23,7 @@ $locations = array(
     $telop_tomorrow = $json['forecasts'][1]['telop'];
     $name = "weather_kinki";
     $content = "今日の天気..." . $telop_today . "<br>" . "明日の天気は... ". $telop_tomorrow . "<br>" . $descripetion . "<br>";
-    echo $content;
-    echo "{ 'name' : '" . $name . "', 'content' : '" . $content . "' }";
+    echo '{ "name" : "' . $name . '", "content" : "' . $content . '" }';
     ?>
      <?php
     // echo "<pre>";
