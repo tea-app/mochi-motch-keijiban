@@ -15,8 +15,7 @@
     else {
       ////漢字やカナをひらがなに変換
       $igo = new Igo(dirname(__FILE__) . "/ipadic");
-      $text = $_GET['content'];
-
+      $text = $_POST['content'];
       $result = $igo->parse($text);
       $str = "";
       foreach($result as $value){
@@ -32,16 +31,15 @@
       }else if(strpos($used,$pre) !== false){
         $content = "使った言葉";
       }else if(strpos(substr($pre, -3),'ん') !== false){
-        $content =  "\"ん\"なのであなたの負け";
-        //初期化
-        $filename = chmod('next.txt', 0666);
-        $word = fopen('next.txt', 'w');
-        fwrite($word, "");
-        fclose($word);
+        $content = "\"ん\"なのであなたのまけ";
         $filename = chmod('word.txt', 0666);
+        $filename = chmod('next.txt', 0666);
         $word = fopen('word.txt', 'w');
         fwrite($word, "");
-        fclose($word);
+        fclose($next);
+        $word = fopen('next.txt', 'w');
+        fwrite($word, "");
+        fclose($next);
       }else{
         $filename = chmod('word.txt', 0666);
         $word = fopen('word.txt', 'a');
