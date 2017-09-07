@@ -7,7 +7,7 @@ class BotCaller
 {
     private $dbm;
     public $data;
-    private $parameters;
+    public $parameters;
     private $keywords;
     
     public function __construct($env_params)
@@ -19,19 +19,19 @@ class BotCaller
             'content' => $this->getLastRecord()['content'],
         ];
         $this->keywords = [
-            'しりとり' => $env_params['BOT_URI'] . 'test.php',
-            '時間' => $env_params['BOT_URI'] . 'test.php',
-            '天気' => $env_params['BOT_URI'] . 'test.php',
-            'おみくじ' => $env_params['BOT_URI'] . 'test.php',
+            'しりとり' => $env_params['BOT_URI'] . 'siritori.php',
+            '時間' => $env_params['BOT_URI'] . 'watch.php',
+            '天気' => $env_params['BOT_URI'] . 'weather.php',
+            'おみくじ' => $env_params['BOT_URI'] . 'omikuji.php',
         ];
     }
     
     public function callBot()
     {
         foreach ($this->keywords as $key => $value) {
-            if ($this->isMatchTag($key) !== false) {
+            if ($this->isMatchTag($key)) {
                 $client = new CurlRequest($value);
-                $result = $client->request($this->parameters, [CURLOPT_RETURNTRANSFER => true]);
+                $result = $client->request(null, [CURLOPT_POST => true, CURLOPT_RETURNTRANSFER => true, CURLOPT_POSTFIELDS => $this->parameters]);
                 $result = json_decode($result, true);
                 $this->insert($result['name'], $result['content']);
                 $this->backToShowPage();
@@ -48,12 +48,13 @@ class BotCaller
     private function isMatchTag($tag)
     {
         if (preg_match('/^' . $tag . '[\s\n]*[\s\S]*$/i', $this->getLastRecord()['content'])) {
-            $text = str_replace($tag, '', $this->getLastRecord());
+            $text = str_replace($tag, '', $this->getLastRecord()['content']);
             $text = preg_replace('/^[\s\n]+/u', '', $text);
+            $this->parameters['content'] = $text;
+            return true;
         } else {
-            $text = false;
+            return false;
         }
-        return $text;
     }
     
     public function insert($name, $content)
@@ -72,3 +73,7 @@ class BotCaller
         exit;
     }
 }
+// $env_params = EnvReader::getParams('.env');
+// $bc = new BotCaller($env_params);
+// var_dump($bc->parameters);
+// var_dump("滋賀県");
