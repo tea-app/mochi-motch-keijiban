@@ -23,6 +23,9 @@ switch ($parameter['function']) {
     if (!Validation::paramsValidation($parameter)) {
         exit("エラーが発生しました。\nもう一度やり直してください。error:000");
     }
+    if ($parameter['name'] === '') {
+        $parameter['name'] = '名無しのもちもっち';
+    }
     $dbm->insert($parameter);
     $bc = new BotCaller($env_params);
     $bc->callBot();
