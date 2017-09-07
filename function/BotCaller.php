@@ -21,7 +21,7 @@ class BotCaller
             'しりとり' => $env_params['BOT_URI'] . 'siritori.php',
             '時間' => $env_params['BOT_URI'] . 'watch.php',
             '天気' => $env_params['BOT_URI'] . 'weather.php',
-            'おみくじ' => $env_params['BOT_URI'] . 'omikuji.php',
+            'もちもっち' => $env_params['BOT_URI'] . 'omikuji.php',
         ];
     }
     
