@@ -30,7 +30,7 @@ $data = $dbm->show();
 <body>
     <div class="header">
         <div class="header-logo">
-            <h1>もちもっち掲示板</h1>
+            <img src="assets/img/moti_logo.png" alt="logo" height="200px">
         </div>
     </div>
     <div class="space"></div>

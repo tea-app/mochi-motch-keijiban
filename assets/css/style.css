@@ -25,13 +25,13 @@ pre{
     width:100%;
     background-image:url("../img/header.jpg");
     padding-top:1px;
-    height:100px;
+    height:250px;
     border-bottom:solid 1px white;
 }
 
 .header-logo{
     text-align:center;
-    margin:;
+    margin-top: 25px;
 }
 .header-logo h1{
     box-sizing:border-box;
